@@ -10,34 +10,47 @@ fetch(videoSource).then((response) => {
             videoAlt[i].classList.remove('hidden');
         }
     }
-    // else {
-    //     const cardVideos = document.querySelectorAll('.cards');
+    else {
+        const cardVideos = document.querySelectorAll('.cards');
 
-    //     for (let i = 0; i < cardVideos.length; i++) {
-    //         let currentCard = cardVideos[i];
-    //         let currentVideo = currentCard.querySelector('.card-back-video')
-        
-    //         currentCard.addEventListener('mouseover', (e) => {
-    //             currentVideo.play();
-    //         })
+        // Check to see if andriod phones
+        if (navigator.userAgent.match(/Android/i)) {
+            // Video will autoplay for android since it won't show the video without playing it first
+            for (let i = 0; i < cardVideos.length; i++) {
+                let currentCard = cardVideos[i];
+                let currentVideo = currentCard.querySelector('.card-back-video')
+
+                currentVideo.play();
+            }
+        }
+        else {
+            for (let i = 0; i < cardVideos.length; i++) {
+                let currentCard = cardVideos[i];
+                let currentVideo = currentCard.querySelector('.card-back-video')
             
-    //         currentCard.addEventListener('mouseleave', (e) => {
-    //             currentVideo.pause();
-    //         })
-    //     }
+                currentCard.addEventListener('mouseover', (e) => {
+                    currentVideo.play();
+                })
+                
+                currentCard.addEventListener('mouseleave', (e) => {
+                    currentVideo.pause();
+                })
+            }
+    
+            // Video cards hover play/pause
+            for (let i = 0; i < cardVideos.length; i++) {
+                let currentCard = cardVideos[i];
+                let currentVideo = currentCard.querySelector('.card-back-video')
+    
+                currentCard.addEventListener('mouseover', (e) => {
+                    currentVideo.play();
+                })
+                
+                currentCard.addEventListener('mouseleave', (e) => {
+                    currentVideo.pause();
+                })
+            }
+        }
 
-    //     // Video cards hover play/pause
-    //     for (let i = 0; i < cardVideos.length; i++) {
-    //         let currentCard = cardVideos[i];
-    //         let currentVideo = currentCard.querySelector('.card-back-video')
-
-    //         currentCard.addEventListener('mouseover', (e) => {
-    //             currentVideo.play();
-    //         })
-            
-    //         currentCard.addEventListener('mouseleave', (e) => {
-    //             currentVideo.pause();
-    //         })
-    //     }
-    // }
+    }
 })
